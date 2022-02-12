@@ -1,3 +1,7 @@
+const input = document.querySelector('.input')
+const phrase = document.getElementById('phrase')
+const check = document.querySelector('.switch-checkbox')
+
 let isBritish = false;
 
 const numToPhrase = (num) => {
@@ -30,3 +34,19 @@ const numToPhrase = (num) => {
 
     return str.trim();
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    input.addEventListener('input', (e) => {
+        phrase.innerHTML = numToPhrase(e.target.value)
+    })
+    
+    check.addEventListener('change', function() {
+        if (this.checked) {
+            isBritish = true;
+            phrase.innerHTML = numToPhrase(input.value)
+        } else {
+            isBritish = false;
+            phrase.innerHTML = numToPhrase(input.value)
+        }
+      });
+})
