@@ -1,0 +1,22 @@
+{
+  "name": "zadanie",
+  "version": "1.0.0",
+  "description": "Create a web-based solution that converts numeric input into the English phrase of that number.",
+  "main": "numToPhrase.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  },
+  "jest": {
+    "verbose": true,
+    "globals": {
+      "window": {},
+      "document": {}
+    }
+  }
+}

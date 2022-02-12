@@ -1,12 +1,10 @@
-const input = document.querySelector('.input')
-const phrase = document.getElementById('phrase')
-const check = document.querySelector('.switch-checkbox')
-
 let isBritish = false;
 
 const numToPhrase = (num) => {
     numLength = num.toString().length
+
     if (numLength > 15) return 'The number is too long';
+
     let x = ('000000000000000' + num).substring(numLength).match(/^(\d{1})(\d{2})(\d{1})(\d{2})(\d{1})(\d{2})(\d{1})(\d{2})(\d{1})(\d{2})$/);
 
     const a = ['', 'one ', 'two ', 'three ', 'four ', 'five ', 'six ', 'seven ', 'eight ', 'nine ', 'ten ', 'eleven ', 'twelve ', 'thirteen ', 'fourteen ', 'fiveteen ', 'sixteen ', 'seventeen ', 'eighteen ', 'nineteen ']
@@ -36,6 +34,9 @@ const numToPhrase = (num) => {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    const input = document.querySelector('.input')
+const phrase = document.getElementById('phrase')
+const check = document.querySelector('.switch-checkbox')
     input.addEventListener('input', (e) => {
         phrase.innerHTML = numToPhrase(e.target.value)
     })
@@ -50,3 +51,5 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
 })
+
+module.exports = numToPhrase;
