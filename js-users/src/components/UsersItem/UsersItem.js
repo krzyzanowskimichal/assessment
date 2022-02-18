@@ -11,8 +11,8 @@ const UsersItem = ({ created, first_name, id, last_name, status, statusUpdate })
   let navigate = useNavigate();
 
   const formatDate = (str) => {
-    const x = str.split(/\D+/);
-    const newDate = new Date(Date.UTC(x[0], --x[1], x[2], x[3] - 1, x[4], x[5], x[6]));
+    const date = str.split(/\D+/);
+    const newDate = new Date(Date.UTC(date[0], --date[1], date[2], date[3] - 1, date[4], date[5], date[6]));
     return format(newDate, "dd/MM/yyyy HH::mm:ss");
   };
 

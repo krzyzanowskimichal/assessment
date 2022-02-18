@@ -21,7 +21,6 @@ const UsersList = () => {
     let selectedUser = users.find((item) => item.id === id);
     selectedUser.status = selectedUser.status === "active" ? "locked" : "active";
     editUser(selectedUser);
-    console.log(id);
   };
 
   const mobileScreen = useMediaQuery("(max-width: 460px)");
@@ -47,6 +46,7 @@ const UsersList = () => {
 
         {paginatedItems.map((user) => (
           <UsersItem
+          key={user.id}
             first_name={user.first_name}
             last_name={user.last_name}
             created={user.created_at}

@@ -21,13 +21,11 @@ export const GlobalProvider = ({ children }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("jest tutaj");
         fetchUsers(data);
       });
   }, []);
 
   const fetchUsers = (user) => {
-    console.log("dsadas");
     dispatch({ type: ACTIONS.FETCH_SUCCESS, payload: user });
   };
 
