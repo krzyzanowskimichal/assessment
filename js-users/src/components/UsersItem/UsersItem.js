@@ -31,7 +31,7 @@ const UsersItem = ({ created, first_name, id, last_name, status, statusUpdate })
       })}
     >
       <div>
-        <Title sx={{ textDecoration: status === "locked" && "line-through" }} order={mobileScreen ? 6 : 4}>
+        <Title sx={{ textDecoration: status === "locked" && "line-through", textDecorationThickness: "2px" }} order={mobileScreen ? 6 : 4}>
           {first_name} {last_name}
         </Title>
         <Text sx={{ textDecoration: status === "locked" && "line-through" }} size={mobileScreen ? "xs" : "md"}>
