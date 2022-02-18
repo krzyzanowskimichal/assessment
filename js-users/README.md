@@ -1,5 +1,3 @@
-# My Portfolio Page
-
 This project was made with Create React App.
 
 ## Install
