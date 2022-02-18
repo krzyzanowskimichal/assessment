@@ -63,7 +63,7 @@ const AddEditUser = () => {
     const date = new Date().toISOString();
     if (first_name && last_name && status) {
       if (!edit) {
-        addUser({ ...form, created_at: date, updated_at: date, id: 666 });
+        addUser({ ...form, created_at: date, updated_at: date, id: Date.now() });
         setTimeout(navigate("/"), 500);
       } else {
         let editedUser = users.find((item) => item.id === Number(id.substring(1)));
@@ -126,6 +126,7 @@ const AddEditUser = () => {
               ]}
               value={status}
               onChange={onSelectChange}
+              onBlur={validate}
               styles={{
                 root: { position: "relative"},
                 error: { position: "absolute", lineHeight: "20px", top: smallScreen ? -2 : -2, left: 45, fontSize: smallScreen ? "12px" : "14px" },
