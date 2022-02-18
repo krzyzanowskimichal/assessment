@@ -14,40 +14,40 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-  fetch("https://assessment-users-backend.herokuapp.com/users", {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-    .then((response) => response.json())
-    .then((data) => {
-        console.log('jest tutaj')
-      fetchUsers(data)
+    fetch("https://assessment-users-backend.herokuapp.com/users", {
+      headers: {
+        "Content-Type": "application/json"
+      }
     })
-}, [])
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("jest tutaj");
+        fetchUsers(data);
+      });
+  }, []);
 
   const fetchUsers = (user) => {
-      console.log('dsadas')
+    console.log("dsadas");
     dispatch({ type: ACTIONS.FETCH_SUCCESS, payload: user });
-  }
+  };
 
-  function fetchError(error) {
+  const fetchError = (error) => {
     dispatch({ type: ACTIONS.FETCH_ERROR, payload: error });
-  }
+  };
 
-  function addUser(user) {
+  const addUser = (user) => {
     dispatch({
       type: ACTIONS.ADD_USER,
       payload: user
     });
-  }
+  };
 
-  function editUser(user) {
+  const editUser = (user) => {
     dispatch({
       type: ACTIONS.EDIT_USER,
       payload: user
     });
-  }
+  };
 
   return (
     <GlobalContext.Provider

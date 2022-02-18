@@ -1,12 +1,14 @@
-import UsersList from "../components/UsersList.js/UsersList";
-import Header from "../components/Header/Header";
+import UsersList from "../components/UsersList/UsersList";
+import MainTemplate from "../templates/MainTemplate";
+import { Paper } from "@mantine/core";
 
 const Home = () => {
   return (
-    <div style={{ display: "flex", justifyContent: "center", flexDirection: 'column', padding: "20px", alignItems: 'center' }}>
-      <Header />
-      <UsersList />
-    </div>
+    <MainTemplate>
+      <Paper sx={{ display: "flex", flexDirection: "column", padding: "13px" }}>
+        <UsersList />
+      </Paper>
+    </MainTemplate>
   );
 };
 export default Home;
