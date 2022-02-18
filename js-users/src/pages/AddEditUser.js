@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState, useRef } from "react";
-import { Button, NativeSelect, TextInput, Text } from "@mantine/core";
+import { Button, NativeSelect, Select, TextInput, Text } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { useNavigate, useParams } from "react-router-dom";
 import { GlobalContext } from "../context/context";
@@ -31,14 +31,18 @@ const AddEditUser = () => {
 
   const { first_name, last_name, status } = form;
   const [edit, setEdit] = useState(false);
+
   const onInputChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const onSelectChange = (e) => {
+    setForm({ ...form, status: e });
   };
 
   useEffect(() => {
     if (id) {
       setEdit(true);
-      console.log(id);
       const selectedUser = users.find((item) => item.id === Number(id.substring(1)));
       setForm({ ...selectedUser });
     }
@@ -56,11 +60,9 @@ const AddEditUser = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     validate();
-    console.log(inputFirstName.current.value.length);
     const date = new Date().toISOString();
     if (first_name && last_name && status) {
       if (!edit) {
-        console.log("git");
         addUser({ ...form, created_at: date, updated_at: date, id: 666 });
         setTimeout(navigate("/"), 500);
       } else {
@@ -74,6 +76,7 @@ const AddEditUser = () => {
   };
 
   const tabletScreen = useMediaQuery("(max-width: 1024px)");
+  const smallScreen = useMediaQuery("(max-width: 350px)")
 
   return (
     <MainTemplate>
@@ -89,25 +92,30 @@ const AddEditUser = () => {
             value={first_name}
             onChange={onInputChange}
             onBlur={validate}
-            placeholder="Enter your first name..."
+            placeholder="Enter user's first name..."
             label="First name"
             ref={inputFirstName}
-            error={validation.firstName && "First name must be 2 to 15 characters long"}
-            // required
-          />
+            error={validation.firstName && "Must be 2 to 15 characters long"}
+            styles={{
+              root: { position: "relative"},
+              error: { position: "absolute", top: smallScreen ? -1 : -2.7 , left:75, fontSize: smallScreen ? "12px" : "14px" },
+            }}          />
           <TextInput
             name="last_name"
             value={last_name}
             onChange={onInputChange}
             onBlur={validate}
-            placeholder="Enter your last name..."
+            placeholder="Enter user's last name..."
             label="Last name"
             ref={inputLastName}
-            error={validation.lastName && "Last name must be 2 to 25 characters long"}
-            // required
+            error={validation.lastName && "Must be 2 to 25 characters long"}
+            styles={{
+              root: { position: "relative"},
+              error: { position: "absolute", top: smallScreen ? -0.5 : -2.7, left: 75, fontSize: smallScreen ? "12px" : "14px" },
+            }}
           />
-          {!edit && (
-            <NativeSelect
+            <Select
+              disabled={edit}
               label="Status"
               error={validation.select && "Please select the status"}
               placeholder="Set status"
@@ -117,12 +125,12 @@ const AddEditUser = () => {
                 { value: "locked", label: "Locked" }
               ]}
               value={status}
-              onChange={(e) => {
-                setForm({ ...form, status: e.target.value });
-                validate();
+              onChange={onSelectChange}
+              styles={{
+                root: { position: "relative"},
+                error: { position: "absolute", lineHeight: "20px", top: smallScreen ? -2 : -2, left: 45, fontSize: smallScreen ? "12px" : "14px" },
               }}
             />
-          )}
 
           <Button sx={{ marginTop: "20px", width: "100%" }} type="submit">
             {edit ? "Edit user" : "Add new user"}
