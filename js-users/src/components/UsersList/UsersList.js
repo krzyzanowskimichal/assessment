@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { Button, Pagination, Paper, Title } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { GlobalContext } from "../../context/context";
-import UsersItem from "../UsersItem/UsersItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import UsersItem from "../UsersItem/UsersItem";
 
 const UsersList = () => {
   let navigate = useNavigate();

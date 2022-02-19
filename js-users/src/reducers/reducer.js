@@ -13,7 +13,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         loading: false,
-        error: "asdsada"
+        error: "Fetch error"
       };
     }
     case ACTIONS.ADD_USER:
